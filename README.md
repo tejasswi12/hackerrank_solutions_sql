@@ -109,16 +109,88 @@ AND
 (CITY LIKE '%A' OR CITY LIKE '%E' OR CITY LIKE '%I' OR CITY LIKE '%O' OR CITY LIKE '%U')
 ORDER BY CITY ASC;
     
-14. Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates.
-    
+14. Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates.    
 Solution: 
-
 SELECT DISTINCT(CITY)
 FROM STATION 
 WHERE 
 CITY NOT LIKE 'A%' AND CITY NOT LIKE 'E%' AND CITY NOT LIKE 'I%' AND CITY NOT LIKE 'O%' AND
 CITY NOT LIKE 'U%'
 ORDER BY CITY ASC;
+
+15. Query the list of CITY names from STATION that do not end with vowels. Your result cannot contain duplicates.
+Solution:
+SELECT DISTINCT(CITY)
+FROM STATION
+WHERE 
+CITY NOT LIKE '%A' AND
+CITY NOT LIKE '%E' AND
+CITY NOT LIKE '%I' AND
+CITY NOT LIKE '%O' AND
+CITY NOT LIKE '%U'
+ORDER BY CITY ASC;
+
+16. Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. Your result cannot contain duplicates.
+Solution:
+SELECT DISTINCT(CITY)
+FROM STATION
+WHERE
+(CITY NOT LIKE 'A%' AND CITY NOT LIKE 'E%' AND CITY NOT LIKE 'I%' AND CITY NOT LIKE 'O%' AND CITY NOT LIKE 'U%')
+ OR 
+(CITY NOT LIKE '%A' AND CITY NOT LIKE '%E' AND CITY NOT LIKE '%I' AND CITY NOT LIKE '%O' AND CITY NOT LIKE '%U')
+ORDER BY CITY ASC;
+
+17. Query the list of CITY names from STATION that do not start with vowels and do not end with vowels. Your result cannot contain duplicates.
+Solution:
+SELECT DISTINCT(CITY)
+FROM STATION
+WHERE
+(CITY NOT LIKE 'A%' AND CITY NOT LIKE 'E%' AND CITY NOT LIKE 'I%' AND CITY NOT LIKE 'O%' AND CITY NOT LIKE 'U%')
+AND 
+(CITY NOT LIKE '%A' AND CITY NOT LIKE '%E' AND CITY NOT LIKE '%I' AND CITY NOT LIKE '%O' AND CITY NOT LIKE '%U')
+ORDER BY CITY ASC;
+
+18. Query the Name of any student in STUDENTS who scored higher than  Marks.
+    Order your output by the last three characters of each name.
+    If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
+Solution:
+SELECT NAME 
+FROM STUDENTS 
+WHERE 
+MARKS > 75 
+ORDER BY SUBSTR(NAME, -3), ID ASC;
+
+19. Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
+Solution:  
+SELECT NAME 
+FROM EMPLOYEE
+ORDER BY NAME ASC; 
+
+20. Write a query that prints a list of employee names for employees in Employee having a salary greater than 2000 per month who have been employees for less than 10 months.
+    Sort your result by ascending order of employee_id.
+Solution:
+SELECT NAME 
+FROM EMPLOYEE
+WHERE
+SALARY > 2000 AND MONTHS < 10 
+ORDER BY EMPLOYEE_ID ASC;
+
+21. 
+22.  
+23.  
+
+24. 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
