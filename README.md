@@ -191,20 +191,27 @@ GROUP BY Country.Continent ;
     If there is more than one student with the same grade (1-7) assigned to them, order those particular students by their marks in ascending order.
     Write a query to help Eve.
 Solution:
+SELECT 
+CASE
+WHEN G.GRADE < 8 THEN NULL 
+WHEN G.GRADE >= 8 THEN S.NAME END,
+G.GRADE, S.MARKS FROM STUDENTS S, GRADES G
+WHERE S.MARKS BETWEEN G.MIN_MARK AND G.MAX_MARK
+ORDER BY G.GRADE DESC, S.NAME ASC;
    
-23. Query a count of the number of cities in CITY having a Population larger than 100000
+24. Query a count of the number of cities in CITY having a Population larger than 100000
 Solution:
 SELECT COUNT(*) 
 FROM CITY 
 WHERE POPULATION > 100000;
  
-24. Query the total population of all cities in CITY where District is California.
+25. Query the total population of all cities in CITY where District is California.
 Solution:
 SELECT SUM(POPULATION) 
 FROM CITY
 WHERE DISTRICT = 'CALIFORNIA' ;
 
-25. Query the average population of all cities in CITY where District is California.
+26. Query the average population of all cities in CITY where District is California.
 Solution:
 SELECT AVG(POPULATION) 
 FROM CITY
@@ -327,7 +334,35 @@ C.COUNTRYCODE = C1.CODE
 WHERE
 C1.CONTINENT = 'ASIA';
 
-42. 
+42. Given the CITY and COUNTRY tables, query the names of all cities where the CONTINENT is 'Africa'.
+    Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+Solution:
+SELECT C.NAME 
+FROM CITY AS C
+JOIN COUNTRY AS C1 
+ON
+C.COUNTRYCODE = C1.CODE
+WHERE
+C1.CONTINENT = 'AFRICA' ; 
+
+43. Write a query identifying the type of each record in the TRIANGLES table using its three side lengths.
+    Output one of the following statements for each record in the table:
+    Equilateral: It's a triangle with  sides of equal length.
+    Isosceles: It's a triangle with  sides of equal length.
+    Scalene: It's a triangle with  sides of differing lengths.
+    Not A Triangle: The given values of A, B, and C don't form a triangle.
+Solution:
+SELECT
+  CASE 
+    WHEN A + B <= C or A + C <= B or B + C <= A THEN 'Not A Triangle'
+    WHEN A = B and B = C THEN 'Equilateral'
+    WHEN A = B or A = C or B = C THEN 'Isosceles'
+    WHEN A <> B and B <> C THEN 'Scalene'
+  END tuple
+FROM TRIANGLES;
+
+
+
 
 
 
