@@ -294,7 +294,40 @@ Solution:
 SELECT ROUND((MAX(LAT_N) - MIN(LAT_N) + MAX(LONG_W) - MIN(LONG_W)), 4) AS D
 FROM STATION; 
 
-38. 
+38. Consider p1(a,b) and p2(c,d) to be two points on a 2D plane where (a,b) are the respective minimum and maximum values of Northern Latitude (LAT_N) and (c,d) are the 
+    respective minimum and maximum values of Western Longitude (LONG_W) in STATION.
+    Query the Euclidean Distance between points p1(a,b) and p2(c,d) and format your answer to display 4 decimal digits.
+Solution:
+SELECT 
+ROUND(SQRT(POWER(MAX(LAT_N) - MIN(LAT_N), 2) + POWER(MAX(LONG_W) - MIN(LONG_W), 2)),4)
+FROM STATION; 
+
+39. A median is defined as a number separating the higher half of a data set from the lower half. Query the median of the Northern Latitudes (LAT_N) from STATION and round 
+    your answer to 4 decimal places.
+Solution:
+SELECT ROUND(LAT_N,4) AS MEDIAN 
+FROM STATION AS S
+WHERE
+(SELECT COUNT(LAT_N) FROM STATION WHERE LAT_N < S.LAT_N) = (SELECT COUNT(LAT_N) FROM STATION WHERE LAT_N > S.LAT_N);
+
+40. Julia conducted a 15 days of learning SQL contest. The start date of the contest was March 01, 2016 and the end date was March 15, 2016.
+    Write a query to print total number of unique hackers who made at least 1 submission each day (starting on the first day of the contest), and find the hacker_id and 
+    name of the hacker who made maximum number of submissions each day. If more than one such hacker has a maximum number of submissions, print the lowest hacker_id. The 
+    query should print this information for each day of the contest, sorted by the date.
+Solution:
+
+41. Given the CITY and COUNTRY tables, query the sum of the populations of all cities where the CONTINENT is 'Asia'.
+    Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+Solution:
+SELECT SUM(C.POPULATION)
+FROM CITY AS C
+JOIN COUNTRY AS C1
+ON 
+C.COUNTRYCODE = C1.CODE
+WHERE
+C1.CONTINENT = 'ASIA';
+
+42. 
 
 
 
